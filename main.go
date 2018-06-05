@@ -36,6 +36,7 @@ func main() {
 }
 
 func EventHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "http://207.154.254.134")
 	events := Events{
 		Event{Name: "Открытие станций первой очереди", Stations: []int{1}},
 		Event{Name: "Открытие Пушкинской", Stations: []int{1, 5}},
@@ -44,6 +45,7 @@ func EventHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func StationHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "http://207.154.254.134")
 	vars := mux.Vars(r)
 	id, err := strconv.ParseInt(vars["stationId"], 10, 64)
 	if err != nil {
