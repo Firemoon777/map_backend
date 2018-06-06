@@ -11,6 +11,7 @@ func initRouter(conf Configuration) *mux.Router {
 	//router.HandleFunc("/events/", EventHandler)
 	//router.HandleFunc("/station/{stationId}", StationHandler)
 	router.HandleFunc("/map/colors", ColorHandler)
+	router.HandleFunc("/map/events", EventHandler)
 	return router
 }
 
@@ -23,4 +24,12 @@ func ColorHandler(w http.ResponseWriter, r *http.Request) {
 	var c []Color
 	db.Find(&c)
 	json.NewEncoder(w).Encode(c);
+}
+
+func EventHandler(w http.ResponseWriter, r *http.Request) {
+	setupOrigin(w, r)
+	var e []Event
+	db.Order("event_time ASC", true)
+	db.Find(&e)
+	json.NewEncoder(w).Encode(e);
 }

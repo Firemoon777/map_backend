@@ -10,12 +10,7 @@ type StationView struct {
 	Active 		[]bool		`json:"active"`
 }
 
-type EventView struct {
-	Id		int		`json:"id"`
-	Name		string		`json:"name"`
-	Time		int		`json:"timestamp"`
-	Stations 	[]int 		`json:"stations"`
-}
+type EventView Event
 type EventViews []EventView
 
 type ColorView Color
@@ -48,7 +43,8 @@ type Color struct {
 }
 
 type Event struct {
-	Id 		int		`gorm:"primary_key"`
-	Name		string
-	EventTime	int		`gorm:"type:time"`
+	Id 		int		`gorm:"primary_key" json:"id"`
+	Name		string		`json:"name"`
+	EventTime	string		`gorm:"type:datetime" json:"time"`
+	Description	string		`json:"description"`
 }
