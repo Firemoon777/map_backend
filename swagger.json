@@ -1,0 +1,58 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Документация для интерактивной карты метро",
+		"version": "1.0.0",
+		"title": "Map backend"
+	},
+	"host": "f1remoon.com",
+	"basePath": "/map",
+	"tags": [
+		{
+			"name": "color",
+			"description": "Цвета, используемые в карте"
+		}
+	],
+	"schemes": [ "http" ],
+	"paths": {
+		"/colors": {
+			"get": {
+				"tags": [ "color" ],
+				"summary": "Возвращает все используемые в карте цвета",
+				"description": "",
+				"produces": [ "application/json" ],
+				"responses": {
+					"200": {
+						"description": "Успех",
+						"schema": {
+							"$ref": "#/definitions/colors"
+						}
+					}
+				} 
+			}
+		}
+	},
+	"definitions": {
+		"color": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"color": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"colors": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/color",
+				"$ref": "#/definitions/color"
+			}
+		}
+
+	}
+}

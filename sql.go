@@ -9,7 +9,8 @@ var db *gorm.DB
 
 func initDatabase(conf Configuration) {
 	t := conf.User + ":" + conf.Password + "@tcp(" + conf.Url  + ")/metro_map"
-	db, err := gorm.Open("mysql", t)
+	var err error
+	db, err = gorm.Open("mysql", t)
 	if err != nil {
 		panic(err)
 	}

@@ -7,7 +7,6 @@ import (
 	//"encoding/json"
 	//"strconv"
 
-	"github.com/gorilla/mux"
 
 )
 
@@ -16,10 +15,8 @@ func main() {
 	conf.Load("conf.json")
 
 	initDatabase(conf)
+	router := initRouter(conf)
 
-	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/events/", EventHandler)
-	router.HandleFunc("/station/{stationId}", StationHandler)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
@@ -28,7 +25,6 @@ func EventHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func StationHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://207.154.254.134")
 	/*vars := mux.Vars(r)
 	id, err := strconv.ParseInt(vars["stationId"], 10, 64)
 	if err != nil {

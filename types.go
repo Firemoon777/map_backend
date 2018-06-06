@@ -19,7 +19,7 @@ type EventView struct {
 type EventViews []EventView
 
 type ColorView Color
-type ColorsView []ColorView
+type ColorViews []ColorView
 
 type Configuration struct {
 	Url 		string
